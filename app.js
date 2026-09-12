@@ -660,12 +660,25 @@ async function saveProduct(e){
   }
   if(!finalCat) return toast('Please select or create a category');
   const data = { name, cat: finalCat, price, oldPrice, tag, images, sizes, sku, colors: colors.length ? colors : [{ name:'Default', hex:'#333333' }], desc, fabric, care, inStock, stock, lowStock, updatedAt: firebase.firestore.FieldValue.serverTimestamp() };
+    console.log('📦 Data being saved:', data);
   try{
-    if(editId){ await db.collection('products').doc(editId).update(data); toast('Product updated'); }
-    else { data.createdAt = firebase.firestore.FieldValue.serverTimestamp(); await db.collection('products').add(data); toast('Product added'); }
+    if(editId){
+      console.log('✏️ Updating:', editId);
+      await db.collection('products').doc(editId).update(data);
+      toast('Product updated');
+    } else {
+      console.log('➕ Adding new product');
+      data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+      const ref = await db.collection('products').add(data);
+      console.log('✅ Saved with ID:', ref.id);
+      toast('Product added');
+    }
     closeProductForm();
     loadProducts();
-  } catch(err){ console.error(err); toast('Could not save product'); }
+  } catch(err){
+    console.error('❌ Save error:', err);
+    toast('Error: ' + (err.code || err.message));
+  }
 }
 
 /* ADMIN — ORDERS */
