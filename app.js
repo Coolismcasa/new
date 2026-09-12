@@ -811,7 +811,7 @@ const page = document.body.dataset.page;
     const s = document.getElementById('sortSelect');
     if(s) s.addEventListener('change', () => { currentSort = s.value; renderProducts(currentFilter, currentSort); });
   }
-  if(page === 'admin'){
+    if(page === 'admin'){
     const adminList = (document.body.dataset.admin || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
     auth.onAuthStateChanged(async user => {
       if(!user){
