@@ -139,9 +139,16 @@
     <button class="detail-close" id="detailClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="detail-grid">
       <div class="detail-media-wrap">
-        <div class="detail-media" id="detailMedia"></div>
-        <div class="detail-thumbs" id="detailThumbs"></div>
-      </div>
+  <div class="detail-media" id="detailMedia"></div>
+  <button class="img-nav img-nav-prev" id="imgPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="img-nav img-nav-next" id="imgNext" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+  </button>
+  <div class="img-counter" id="imgCounter">1 / 1</div>
+  <div class="detail-thumbs" id="detailThumbs"></div>
+</div>
       <div class="detail-info">
         <span class="detail-cat" id="detailCat"></span>
         <h2 class="detail-name" id="detailName"></h2>
