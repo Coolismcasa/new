@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Category — COOLISM</title>
+<meta property="og:title" content="Shop Coolism Collections" />
+<meta property="og:description" content="Premium streetwear from Karachi." />
+<meta property="og:image" content="images/og-banner.jpg" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230B1A30'/%3E%3Ctext x='50' y='68' font-family='Georgia' font-size='60' font-weight='700' fill='%23F9F8F6' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="category">
+
+<header class="nav-wrap" id="navWrap">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="dot"></span>COOLISM</a>
+    <nav class="nav-links">
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#shop">Shop</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="badge" id="wishlistCount">0</span>
+      </button>
+      <button class="btn-ghost" id="accountBtn">Login</button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="category-hero">
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <p class="eyebrow" id="catEyebrow">Collection</p>
+    <h1 id="catTitle">Loading…</h1>
+    <p class="cat-sub" id="catSub">—</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px">
+  <div class="container">
+    <div class="shop-controls shop-controls-right">
+      <select id="sortSelect" class="sort-select">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="newest">Newest First</option>
+      </select>
+    </div>
+    <div class="grid-products" id="productGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-bottom">
+      <span>© 2026 Coolism. All rights reserved.</span>
+      <span>Prices in PKR</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Bag</h3>
+    <button class="x" id="cartClose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <div class="ship-progress" id="shipProgress">
+      <div class="ship-bar"><div class="ship-fill" id="shipFill"></div></div>
+      <p id="shipMsg">Add Rs 5,000 more for free shipping</p>
+    </div>
+    <div class="total-row"><span>Subtotal</span><b id="cartTotal">Rs 0</b></div>
+    <p class="note">Free shipping over Rs 5,000.</p>
+    <button class="btn btn-silver" id="checkoutBtn">Proceed to Checkout</button>
+  </div>
+</aside>
+
+<aside class="drawer" id="wishlistDrawer">
+  <div class="drawer-head">
+    <h3>My Wishlist</h3>
+    <button class="x" id="wishlistClose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-body" id="wishlistBody"></div>
+</aside>
+
+<div class="modal-backdrop" id="authModal">
+  <div class="modal">
+    <div class="modal-art">
+      <a href="index.html" class="logo"><span class="dot"></span>COOLISM</a>
+      <h3>Comfort meets <em>Coolism.</em></h3>
+      <p>Join the circle for early access.</p>
+    </div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <div class="tabs"><button data-tab="login" class="active">Login</button><button data-tab="signup">Sign Up</button></div>
+      <form id="loginForm" novalidate>
+        <h2 class="panel-title">Welcome back</h2>
+        <p class="panel-sub">Sign in with your email.</p>
+        <div class="field" data-field><label>Email Address</label><input id="li-email" type="email" /><span class="msg">Enter a valid email.</span></div>
+        <div class="field" data-field><label>Password</label><input id="li-pass" type="password" /><span class="msg">Min 6 characters.</span></div>
+        <div class="form-foot"><label><input type="checkbox" checked /> Remember me</label><a href="#" id="forgotPass">Forgot?</a></div>
+        <button type="submit" class="btn btn-silver" id="loginBtn">Sign In</button>
+        <div class="divider">OR</div>
+        <div class="social-row">
+          <button type="button" data-social="Google"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Google</button>
+          <button type="button" data-social="Apple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c1.5 0 2.5 1 2.5 2.5S13 8 12 8s-2.5-1-2.5-2.5S10.5 3 12 3z"/><path d="M6 20c0-4 2-7 6-7s6 3 6 7"/></svg> Apple</button>
+        </div>
+      </form>
+      <form id="signupForm" novalidate hidden>
+        <h2 class="panel-title">Create account</h2>
+        <p class="panel-sub">Just email & password.</p>
+        <div class="field" data-field><label>Email</label><input id="su-email" type="email" /><span class="msg">Enter a valid email.</span></div>
+        <div class="field" data-field><label>Password</label><input id="su-pass" type="password" /><span class="msg">Min 6 characters.</span></div>
+        <div class="field" data-field><label>Confirm Password</label><input id="su-pass2" type="password" /><span class="msg">Don't match.</span></div>
+        <div class="form-foot"><label><input type="checkbox" id="su-terms" /> I agree to the Terms</label></div>
+        <button type="submit" class="btn btn-silver" id="signupBtn">Create Account</button>
+        <div class="divider">OR</div>
+        <div class="social-row">
+          <button type="button" data-social="Google"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Google</button>
+          <button type="button" data-social="Apple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c1.5 0 2.5 1 2.5 2.5S13 8 12 8s-2.5-1-2.5-2.5S10.5 3 12 3z"/><path d="M6 20c0-4 2-7 6-7s6 3 6 7"/></svg> Apple</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="detail-backdrop" id="detailModal">
+  <div class="detail-modal">
+    <button class="detail-close" id="detailClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="detail-grid">
+      <div class="detail-media-wrap">
+        <div class="detail-media" id="detailMedia"></div>
+        <div class="detail-thumbs" id="detailThumbs"></div>
+      </div>
+      <div class="detail-info">
+        <span class="detail-cat" id="detailCat"></span>
+        <h2 class="detail-name" id="detailName"></h2>
+        <div class="detail-price" id="detailPrice"></div>
+        <div class="detail-rating" id="detailRating"></div>
+        <p class="detail-desc" id="detailDesc"></p>
+        <div class="detail-block"><label>Size <a href="#" class="size-guide-link" data-size-guide>Size Guide</a></label><div class="opt-row" id="detailSizes"></div></div>
+        <div class="detail-block"><label>Color</label><div class="color-row" id="detailColors"></div></div>
+        <div class="detail-block"><label>Quantity</label>
+          <div class="qty-row"><button id="qtyMinus">−</button><span id="qtyValue">1</span><button id="qtyPlus">+</button></div>
+        </div>
+        <div class="detail-actions">
+          <button class="btn btn-silver detail-add" id="detailAddBtn">Add to Bag</button>
+          <button class="wish-heart" id="detailWishBtn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="detail-meta">
+          <div><b>Fabric</b><span id="detailFabric"></span></div>
+          <div><b>Care</b><span id="detailCare"></span></div>
+          <div><b>SKU</b><span id="detailSku"></span></div>
+        </div>
+        <div class="reviews-block">
+          <h3 class="reviews-title">Customer Reviews</h3>
+          <div id="reviewsList" class="reviews-list"></div>
+          <form id="reviewForm" class="review-form">
+            <p class="review-form-title">Write a review</p>
+            <div class="star-picker" id="starPicker"><span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span></div>
+            <div class="field"><input type="text" id="reviewText" placeholder="Share your thoughts..." /></div>
+            <button type="submit" class="btn btn-line" style="padding:10px 22px">Post Review</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="sizeGuideModal">
+  <div class="checkout-modal">
+    <div class="modal-panel" style="grid-column:1/-1">
+      <button class="modal-close" id="sizeGuideClose"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2 class="panel-title">Size Guide</h2>
+      <p class="panel-sub">Measurements in inches</p>
+      <table class="size-table">
+        <thead><tr><th>Size</th><th>Chest</th><th>Waist</th><th>Length</th><th>Shoulder</th></tr></thead>
+        <tbody>
+          <tr><td>S</td><td>36-38</td><td>30-32</td><td>26</td><td>17</td></tr>
+          <tr><td>M</td><td>38-40</td><td>32-34</td><td>27</td><td>18</td></tr>
+          <tr><td>L</td><td>40-42</td><td>34-36</td><td>28</td><td>19</td></tr>
+          <tr><td>XL</td><td>42-44</td><td>36-38</td><td>29</td><td>20</td></tr>
+          <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>30</td><td>21</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="checkoutModal">
+  <div class="checkout-modal">
+    <div class="modal-panel" style="grid-column:1/-1">
+      <button class="modal-close" id="checkoutClose"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <h2 class="panel-title">Shipping Details</h2>
+      <p class="panel-sub">Payment is Cash on Delivery.</p>
+      <div class="cod-badge"><span class="cod-icon">💵</span><div><b>Cash on Delivery</b><span>Pay when it arrives</span></div></div>
+      <form id="checkoutForm" novalidate>
+        <div class="field" data-field><label>Full Name</label><input id="co-name" type="text" /><span class="msg">Required</span></div>
+        <div class="row-2">
+          <div class="field" data-field><label>Mobile</label><input id="co-phone" type="tel" /><span class="msg">11 digits</span></div>
+          <div class="field" data-field><label>City</label><input id="co-city" type="text" /><span class="msg">Required</span></div>
+        </div>
+        <div class="row-2">
+          <div class="field" data-field><label>District</label><input id="co-district" type="text" /><span class="msg">Required</span></div>
+          <div class="field" data-field><label>Province</label><select id="co-province"><option value="">Select…</option><option>Sindh</option><option>Punjab</option><option>Khyber Pakhtunkhwa</option><option>Balochistan</option><option>Gilgit-Baltistan</option><option>Azad Kashmir</option><option>Islamabad Capital Territory</option></select><span class="msg">Required</span></div>
+        </div>
+        <div class="field" data-field><label>Full Address</label><input id="co-address" type="text" /><span class="msg">Required</span></div>
+        <div class="checkout-summary">
+          <div class="total-row"><span>Subtotal</span><b id="co-subtotal">Rs 0</b></div>
+          <div class="total-row"><span>Shipping</span><b id="co-shipping">Rs 0</b></div>
+          <div class="total-row co-grand"><span>Total (COD)</span><b id="co-total">Rs 0</b></div>
+        </div>
+        <button type="submit" class="btn btn-silver" id="placeOrderBtn">Place Order — COD</button>
+        <p class="checkout-note" id="checkoutNote"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="successModal">
+  <div class="success-modal">
+    <div class="success-icon">✓</div>
+    <h2>Order Placed!</h2>
+    <p>Your order <b id="successOrderId">—</b> has been received.</p>
+    <a href="profile.html#orders" class="btn btn-silver">View My Orders</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="dot"></span><span id="toastMsg">Done</span></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
