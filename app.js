@@ -821,6 +821,7 @@ const page = document.body.dataset.page;
       }
       const email = (user.email || '').toLowerCase();
       if(!adminList.includes(email)){ alert('Access denied.'); window.location.href = 'index.html'; return; }
+            await loadCatalog();
       await loadProducts();
       await loadOrders();
       await loadUsers();
