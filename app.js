@@ -627,6 +627,7 @@ function parseImagesFromSlots(baseUrl){
 }
 async function saveProduct(e){
   e.preventDefault();
+  console.log('🚀 saveProduct called');
   const form = document.getElementById('productForm');
   const editId = form.dataset.editId;
   const name = document.getElementById('p-name').value.trim();
